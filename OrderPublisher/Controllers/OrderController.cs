@@ -23,23 +23,6 @@ public class OrderController : ControllerBase
         _logger = logger;
     }
 
-    //[HttpPost("check-in")]
-    //public async Task<IActionResult> CheckInOrderAsync([FromBody] string message)
-    //{
-
-    //    _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Publish => Message : {message}");
-    //    await _client.PublishEventAsync(PUBSUB_NAME, TOPIC_NAME, message, CancellationToken.None);
-    //    //await _orderPubService.PublishStringAsync(message);
-    //    return Ok(message);
-    //}
-
-    [HttpPost("publish")]
-    public async Task<IActionResult> Publish([FromBody] object message)
-    {
-        await _client.PublishEventAsync("orderpubsub", "order", message);
-        return Ok("Message published.");
-    }
-
     [HttpPost("check-in/v2")]
     public async Task<IActionResult> CheckIn2OrderAsync([FromBody] CreateOrderDTO req)
     {
