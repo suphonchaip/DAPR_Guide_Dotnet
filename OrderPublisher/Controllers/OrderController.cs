@@ -1,8 +1,7 @@
-﻿using Dapr.Client;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OrderPublisher.DTOs.Orders;
-using OrderPublisher.Services;
 using ShareKernel.Models;
+using DaprClient = Dapr.Client.DaprClient;
 
 namespace OrderPublisher.Controllers;
 
@@ -10,23 +9,18 @@ namespace OrderPublisher.Controllers;
 [ApiController]
 public class OrderController : ControllerBase
 {
-    private readonly OrderPublisherService _orderPubService;
+    //private readonly OrderPublisherService _orderPubService;
     private readonly ILogger<OrderController> _logger;
+    public readonly DaprClient _client;
 
-    public OrderController(OrderPublisherService orderPubService,
+    private static string PUBSUB_NAME = "orderpubsub";
+    private static string TOPIC_NAME = "order";
+
+    public OrderController(DaprClient client,
                            ILogger<OrderController> logger)
     {
-        _orderPubService = orderPubService;
+        _client = client;
         _logger = logger;
-    }
-
-    [HttpPost("check-in")]
-    public async Task<IActionResult> CheckInOrderAsync([FromBody] string message)
-    {
-       
-        _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Publish => Message : {message}");
-        await _orderPubService.PublishStringAsync(message);
-        return Ok(message);
     }
 
     [HttpPost("check-in/v2")]
@@ -41,8 +35,9 @@ public class OrderController : ControllerBase
             Name = req.Name,
         };
         _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Publish => Id : {order.Id}. Name: {order.Name}");
-        await _orderPubService.PublishAsync(order);
-        return Ok(req);
+        await _client.PublishEventAsync(PUBSUB_NAME, TOPIC_NAME, order, CancellationToken.None);
+        //await _orderPubService.PublishAsync(order);
+        return Ok(order);
     }
 }
 

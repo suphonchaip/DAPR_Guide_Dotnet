@@ -1,29 +1,45 @@
 ﻿using Dapr;
 using Microsoft.AspNetCore.Mvc;
+using OrderSubscriber.Models;
 using ShareKernel.Models;
-using System.Text.Json;
 
 namespace OrderSubscriber.Controllers
 {
-    public class CheckOutController : Controller
+    [ApiController]
+    public class CheckOutController : ControllerBase
     {
-        private readonly ILogger<CheckOutController> _logger;
-        private const string PUBSUB_NAME = "pubsub";
-        private const string TOPIC_NAME = "order";
+        private readonly ApplicationDbContext _context;
 
-        public CheckOutController(ILogger<CheckOutController> logger)
+        public CheckOutController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        [Route("/order")]
-        [HttpPost]
-        [Topic(PUBSUB_NAME, TOPIC_NAME)]
-        public IActionResult CheckOutOrder([FromBody] string message)
+
+        [Topic("orderpubsub", "order")]
+        [HttpPost("checkout")]
+        public async Task<IActionResult> Subscribe([FromBody] OrderResponse payload)
         {
-            //var orderOvj = JsonSerializer.Deserialize<Order>(order);
-            _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Receive Order => message : {message}");
-            return Ok(message);
+            ////var resp = JsonSerializer.Deserialize<OrderResponse>(payload.ToString());
+            //// แสดง payload ที่รับมาจาก RabbitMQ
+            //Console.WriteLine("Received message: " + payload.data.Name);
+
+            // ประมวลผล payload ที่นี่
+            var newCheckOut = new CheckOutOrder
+            {
+                Id = Guid.NewGuid(),
+                Name = payload == null ? "" : payload.data.Name,
+                TimeStamp = DateTime.Now,
+            };
+            _context.CheckOutOrders.Add(newCheckOut);
+            await _context.SaveChangesAsync();
+
+            return Ok(payload);
         }
     }
+}
+
+public class OrderResponse
+{
+    public Order? data { get; set; }
 }

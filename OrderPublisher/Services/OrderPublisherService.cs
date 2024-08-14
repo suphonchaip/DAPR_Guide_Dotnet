@@ -7,7 +7,7 @@ namespace OrderPublisher.Services
     public class OrderPublisherService : IPublisher<Order>
     {
         private readonly DaprClient _client;
-        private static string PUBSUB_NAME = "pubsub";
+        private static string PUBSUB_NAME = "orderpubsub";
         private static string TOPIC_NAME = "order";
 
         public OrderPublisherService(DaprClient client)
