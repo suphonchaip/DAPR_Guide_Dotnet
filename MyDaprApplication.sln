@@ -3,12 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35201.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaprStateStore", "DaprStateStore\DaprStateStore.csproj", "{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaprStateStore", "DaprStateStore\DaprStateStore.csproj", "{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{01F079C1-4924-4233-A356-06DE84DC9680}"
 	ProjectSection(SolutionItems) = preProject
-		statestore.yaml = statestore.yaml
+		resources\pubsub\pubsub.yaml = resources\pubsub\pubsub.yaml
+		resources\statestore\statestore.yaml = resources\statestore\statestore.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{731DA740-F19E-4C69-97C0-CE700B86F31F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StateStore", "StateStore", "{7E49234F-264F-4126-9910-4ECAE59A3B66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PubSub", "PubSub", "{2D06A420-E04C-471F-8E21-9BFC543D33FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderPublisher", "OrderPublisher\OrderPublisher.csproj", "{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareKernel", "ShareKernel\ShareKernel.csproj", "{53E3C434-164C-433F-B024-5CB71921A70F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +31,24 @@ Global
 		{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E3C434-164C-433F-B024-5CB71921A70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E3C434-164C-433F-B024-5CB71921A70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E3C434-164C-433F-B024-5CB71921A70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E3C434-164C-433F-B024-5CB71921A70F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3161434-6AFE-4FAF-9651-4F31F65AFE8E} = {7E49234F-264F-4126-9910-4ECAE59A3B66}
+		{7E49234F-264F-4126-9910-4ECAE59A3B66} = {731DA740-F19E-4C69-97C0-CE700B86F31F}
+		{2D06A420-E04C-471F-8E21-9BFC543D33FE} = {731DA740-F19E-4C69-97C0-CE700B86F31F}
+		{6D5C3DFC-6D11-4DF2-A4EE-9DDC67247245} = {2D06A420-E04C-471F-8E21-9BFC543D33FE}
+		{53E3C434-164C-433F-B024-5CB71921A70F} = {731DA740-F19E-4C69-97C0-CE700B86F31F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98009256-1171-4FCD-890E-45BF6D6C80D1}

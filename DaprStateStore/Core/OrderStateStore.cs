@@ -1,6 +1,6 @@
 ﻿using Dapr.Client;
-using DaprStateStore.Core.Interfaces;
-using DaprStateStore.Models;
+using ShareKernel.Core.Interfaces;
+using ShareKernel.Models;
 using System.Text.Json;
 
 namespace DaprStateStore.Core

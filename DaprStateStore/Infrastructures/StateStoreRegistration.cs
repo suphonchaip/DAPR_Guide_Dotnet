@@ -1,6 +1,6 @@
 ﻿using DaprStateStore.Core;
-using DaprStateStore.Core.Interfaces;
-using DaprStateStore.Models;
+using ShareKernel.Core.Interfaces;
+using ShareKernel.Models;
 
 namespace DaprStateStore.Infrastructures
 {
