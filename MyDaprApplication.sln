@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35201.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DaprStateStore", "DaprStateStore\DaprStateStore.csproj", "{F3161434-6AFE-4FAF-9651-4F31F65AFE8E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{01F079C1-4924-4233-A356-06DE84DC9680}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{01F079C1-4924-4233-A356-06DE84DC9680}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{731DA740-F19E-4C69-97C0-CE700B86F31F}"
 EndProject
@@ -28,6 +28,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "statestore", "statestore", "{3CBB3FD1-AA42-4E20-B67F-650C795325A9}"
 	ProjectSection(SolutionItems) = preProject
 		resources\statestore\statestore.yaml = resources\statestore\statestore.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k6", "k6", "{0D5BA4D9-279B-47EE-9562-84A15A6C73C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pubsub", "pubsub", "{58B2C290-2AC6-402F-90B5-995B772F10D9}"
+	ProjectSection(SolutionItems) = preProject
+		k6_pubsub.js = k6_pubsub.js
 	EndProjectSection
 EndProject
 Global
@@ -65,6 +72,7 @@ Global
 		{BAB8F9EE-97E9-41DF-8F52-B0AD2523C362} = {2D06A420-E04C-471F-8E21-9BFC543D33FE}
 		{8CB364F2-4FA6-460A-A0B9-C72F3AA98545} = {01F079C1-4924-4233-A356-06DE84DC9680}
 		{3CBB3FD1-AA42-4E20-B67F-650C795325A9} = {01F079C1-4924-4233-A356-06DE84DC9680}
+		{58B2C290-2AC6-402F-90B5-995B772F10D9} = {0D5BA4D9-279B-47EE-9562-84A15A6C73C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98009256-1171-4FCD-890E-45BF6D6C80D1}
