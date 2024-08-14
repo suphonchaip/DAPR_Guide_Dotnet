@@ -9,7 +9,7 @@
                 "DAPR_GRPC_PORT": "50000"
             },
             "dotnetRunMessages": true,
-            "applicationUrl": "http://localhost:5167"
+            "applicationUrl": "http://localhost:5001"
         },
         "https": {
             "commandName": "Project",
@@ -19,7 +19,7 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "dotnetRunMessages": true,
-            "applicationUrl": "https://localhost:7020;http://localhost:5167"
+            "applicationUrl": "https://localhost:15001;http://localhost:5001"
         },
         "IIS Express": {
             "commandName": "IISExpress",

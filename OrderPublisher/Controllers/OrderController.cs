@@ -21,13 +21,23 @@ public class OrderController : ControllerBase
     }
 
     [HttpPost("check-in")]
-    public async Task<IActionResult> CheckInAsync([FromBody] CreateOrderDTO req)
+    public async Task<IActionResult> CheckInOrderAsync([FromBody] string message)
+    {
+       
+        _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Publish => Message : {message}");
+        await _orderPubService.PublishStringAsync(message);
+        return Ok(message);
+    }
+
+    [HttpPost("check-in/v2")]
+    public async Task<IActionResult> CheckIn2OrderAsync([FromBody] CreateOrderDTO req)
     {
         DateTime now = DateTime.Now;
-        var ticks = (int)now.Ticks;
+        string dateString = now.ToString("yyyyMMddHHmmss");
+        long dateNumber = long.Parse(dateString);
         var order = new Order
         {
-            Id = ticks,
+            Id = dateNumber,
             Name = req.Name,
         };
         _logger.LogInformation($"[{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}]-Publish => Id : {order.Id}. Name: {order.Name}");
