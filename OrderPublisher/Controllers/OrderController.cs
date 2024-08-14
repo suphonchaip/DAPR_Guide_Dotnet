@@ -1,8 +1,7 @@
-﻿using Dapr.Client;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OrderPublisher.DTOs.Orders;
-using OrderPublisher.Services;
 using ShareKernel.Models;
+using DaprClient = Dapr.Client.DaprClient;
 
 namespace OrderPublisher.Controllers;
 
@@ -33,6 +32,13 @@ public class OrderController : ControllerBase
     //    //await _orderPubService.PublishStringAsync(message);
     //    return Ok(message);
     //}
+
+    [HttpPost("publish")]
+    public async Task<IActionResult> Publish([FromBody] object message)
+    {
+        await _client.PublishEventAsync("orderpubsub", "order", message);
+        return Ok("Message published.");
+    }
 
     [HttpPost("check-in/v2")]
     public async Task<IActionResult> CheckIn2OrderAsync([FromBody] CreateOrderDTO req)
